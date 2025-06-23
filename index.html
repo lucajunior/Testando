@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub - Onde o mundo desenvolve software</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --github-dark: #0d1117;
+            --github-darker: #010409;
+            --github-light: #f0f6fc;
+            --github-blue: #58a6ff;
+            --github-gray: #8b949e;
+            --github-border: #30363d;
+            --github-green: #238636;
+            --github-purple: #8957e5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        body {
+            background-color: var(--github-dark);
+            color: var(--github-light);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--github-darker);
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--github-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            color: var(--github-light);
+            font-size: 2rem;
+        }
+
+        .logo-text {
+            color: var(--github-light);
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--github-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: var(--github-blue);
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-outline {
+            border: 1px solid var(--github-border);
+            color: var(--github-light);
+            background-color: transparent;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--github-gray);
+            background-color: rgba(240, 246, 252, 0.1);
+        }
+
+        .btn-primary {
+            background-color: var(--github-green);
+            color: white;
+            border: 1px solid rgba(240, 246, 252, 0.1);
+        }
+
+        .btn-primary:hover {
+            background-color: #2ea043;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 5rem 0;
+            text-align: center;
+            background: linear-gradient(to bottom, var(--github-darker), var(--github-dark));
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #58a6ff, #8957e5);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: var(--github-gray);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        /* Features */
+        .features {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background-color: var(--github-darker);
+            border: 1px solid var(--github-border);
+            border-radius: 6px;
+            padding: 2rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(1, 4, 9, 0.5);
+            border-color: var(--github-blue);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--github-blue);
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-desc {
+            color: var(--github-gray);
+            font-size: 0.95rem;
+        }
+
+        /* Repositories */
+        .repositories {
+            padding: 4rem 0;
+        }
+
+        .repo-card {
+            background-color: var(--github-darker);
+            border: 1px solid var(--github-border);
+            border-radius: 6px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .repo-info h3 {
+            color: var(--github-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .repo-info p {
+            color: var(--github-gray);
+            font-size: 0.9rem;
+        }
+
+        .repo-stats {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .repo-stat {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            color: var(--github-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Dark/Light Mode Toggle */
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--github-light);
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--github-darker);
+            padding: 3rem 0;
+            border-top: 1px solid var(--github-border);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-col h3 {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-link {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-link a {
+            color: var(--github-gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .footer-link a:hover {
+            color: var(--github-blue);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            color: var(--github-gray);
+            font-size: 0.8rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .repo-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .repo-stats {
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <i class="fab fa-github logo-icon"></i>
+                    <span class="logo-text">GitHub</span>
+                </a>
+                <div class="nav-links">
+                    <a href="#features" class="nav-link">Features</a>
+                    <a href="#repositories" class="nav-link">Repositories</a>
+                    <a href="#" class="nav-link">Documentation</a>
+                    <a href="#" class="nav-link">Pricing</a>
+                    <button class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <a href="#" class="btn btn-outline">Sign in</a>
+                    <a href="#" class="btn btn-primary">Sign up</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Where the world builds software</h1>
+            <p>Millions of developers and companies build, ship, and maintain their software on GitHub—the largest and most advanced development platform in the world.</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn btn-primary">Sign up for GitHub</a>
+                <a href="#" class="btn btn-outline">Start a free enterprise trial</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Powerful features to supercharge your development</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-code-branch feature-icon"></i>
+                    <h3 class="feature-title">Version Control</h3>
+                    <p class="feature-desc">GitHub's powerful version control lets you collaborate on code with anyone, anywhere, while keeping your work organized.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-code feature-icon"></i>
+                    <h3 class="feature-title">Code Review</h3>
+                    <p class="feature-desc">Review code with your team, leave comments, and suggest changes to improve quality before merging.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-shield-alt feature-icon"></i>
+                    <h3 class="feature-title">Security</h3>
+                    <p class="feature-desc">Advanced security features help you find and fix vulnerabilities before they become problems.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-project-diagram feature-icon"></i>
+                    <h3 class="feature-title">Project Management</h3>
+                    <p class="feature-desc">Organize your work with project boards, issues, and milestones to stay on track.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-server feature-icon"></i>
+                    <h3 class="feature-title">CI/CD</h3>
+                    <p class="feature-desc">Automate your workflow with GitHub Actions for continuous integration and deployment.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-users feature-icon"></i>
+                    <h3 class="feature-title">Collaboration</h3>
+                    <p class="feature-desc">Work together with your team in real-time with GitHub Codespaces and Discussions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="repositories" id="repositories">
+        <div class="container">
+            <h2 class="section-title">Popular Open Source Projects</h2>
+            <div class="repo-card">
+                <div class="repo-info">
+                    <h3>freeCodeCamp/freeCodeCamp</h3>
+                    <p>freeCodeCamp.org's open-source codebase and curriculum</p>
+                </div>
+                <div class="repo-stats">
+                    <span class="repo-stat"><i class="fas fa-star"></i> 372k</span>
+                    <span class="repo-stat"><i class="fas fa-code-branch"></i> 33k</span>
+                </div>
+            </div>
+            <div class="repo-card">
+                <div class="repo-info">
+                    <h3>vuejs/vue</h3>
+                    <p>🖖 Vue.js is a progressive, incrementally-adoptable JavaScript framework for building UI on the web.</p>
+                </div>
+                <div class="repo-stats">
+                    <span class="repo-stat"><i class="fas fa-star"></i> 205k</span>
+                    <span class="repo-stat"><i class="fas fa-code-branch"></i> 34k</span>
+                </div>
+            </div>
+            <div class="repo-card">
+                <div class="repo-info">
+                    <h3>facebook/react</h3>
+                    <p>A declarative, efficient, and flexible JavaScript library for building user interfaces.</p>
+                </div>
+                <div class="repo-stats">
+                    <span class="repo-stat"><i class="fas fa-star"></i> 210k</span>
+                    <span class="repo-stat"><i class="fas fa-code-branch"></i> 44k</span>
+                </div>
+            </div>
+            <div class="repo-card">
+                <div class="repo-info">
+                    <h3>tensorflow/tensorflow</h3>
+                    <p>An Open Source Machine Learning Framework for Everyone</p>
+                </div>
+                <div class="repo-stats">
+                    <span class="repo-stat"><i class="fas fa-star"></i> 176k</span>
+                    <span class="repo-stat"><i class="fas fa-code-branch"></i> 88k</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Product</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="#">Features</a></li>
+                        <li class="footer-link"><a href="#">Security</a></li>
+                        <li class="footer-link"><a href="#">Team</a></li>
+                        <li class="footer-link"><a href="#">Enterprise</a></li>
+                        <li class="footer-link"><a href="#">Customer stories</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Platform</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="#">Developer API</a></li>
+                        <li class="footer-link"><a href="#">Partners</a></li>
+                        <li class="footer-link"><a href="#">Atom</a></li>
+                        <li class="footer-link"><a href="#">Electron</a></li>
+                        <li class="footer-link"><a href="#">GitHub Desktop</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="#">Help</a></li>
+                        <li class="footer-link"><a href="#">Community Forum</a></li>
+                        <li class="footer-link"><a href="#">Professional Services</a></li>
+                        <li class="footer-link"><a href="#">Learning Lab</a></li>
+                        <li class="footer-link"><a href="#">Status</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="#">About</a></li>
+                        <li class="footer-link"><a href="#">Blog</a></li>
+                        <li class="footer-link"><a href="#">Careers</a></li>
+                        <li class="footer-link"><a href="#">Press</a></li>
+                        <li class="footer-link"><a href="#">Shop</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2023 GitHub, Inc. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dark/Light mode toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const icon = themeToggle.querySelector('i');
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-theme');
+            
+            if (body.classList.contains('light-theme')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                // Update CSS variables for light theme
+                body.style.setProperty('--github-dark', '#ffffff');
+                body.style.setProperty('--github-darker', '#f6f8fa');
+                body.style.setProperty('--github-light', '#24292f');
+                body.style.setProperty('--github-border', '#d0d7de');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                // Reset to dark theme
+                body.style.setProperty('--github-dark', '#0d1117');
+                body.style.setProperty('--github-darker', '#010409');
+                body.style.setProperty('--github-light', '#f0f6fc');
+                body.style.setProperty('--github-border', '#30363d');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
